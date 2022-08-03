@@ -71,5 +71,19 @@ button{
     justify-self: center;
 }
     
+@media (min-width: 1000px){
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;    
+    }
+
+    .item:last-child:nth-child(2) {
+        grid-column-end: 4;
+      }
+
     
+    .item:last-child{
+    grid-column-end: 4;
+    }
+}
 

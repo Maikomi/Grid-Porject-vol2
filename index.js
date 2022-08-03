@@ -1,3 +1,6 @@
+
+
+
 const gridChildren = [...document.getElementsByClassName('item')]
 
 gridChildren.forEach((child, idx) => {child.id = `btn${++idx}`;});
@@ -30,3 +33,24 @@ btn1.addEventListener("click", () => {
     div.style.boxShadow = `-5px 5px 10px rgba(${rm24}, ${gbm21}, ${gbm21}, 0.2), 5px -5px 10px rgba(${rm24}, ${gbm21}, ${gbm21}, 0.2), -5px -5px 10px rgba(${r14}, ${gb23}, ${gb23}, 0.9), 5px 5px 13px rgba(${rm24}, ${gbm21}, ${gbm21}, 0.9), inset 1px 1px 2px rgba(${r14}, ${gb23}, ${gb23}, 0.3), inset -1px -1px 2px rgba(${rm24}, ${gbm21}, ${gbm21}, 0.5)`;
   });
 });
+
+function add() {
+  console.log(document.getElementById("container").innerHTML.includes("youtube"))
+  if (!document.getElementById("container").innerHTML.includes("youtube")) {
+    if (window.innerWidth > 1000) {
+      const new11 = document.createElement("article");
+      new11.setAttribute('class', 'item')
+      new11.innerHTML = 
+        "<a href='https://www.youtube.com/watch?v=5I5V8VZ3OOA' target='_blank' rel='noopener noreferrer'>kliknij mnie :)</a>";
+      document.getElementById("container").appendChild(new11);
+    }
+  } else {
+    if (window.innerWidth <= 1000) {
+      const die = document.getElementById("btn11");
+      die.remove();
+    }
+  }
+};
+
+window.addEventListener('load', add);
+window.addEventListener('resize', add);
