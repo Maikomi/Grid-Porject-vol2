@@ -86,71 +86,71 @@ const handleFontFamily = e => {
   document.body.classList.toggle('font');
 }
 
-const addListinersToBackgroundChnage = (child) => {
+const addListenersToBackgroundChnage = (child) => {
   child.addEventListener(child.dataset.eventType, handleBackgroundChange);
 }
 
-const addListinersToAlert = (child) => {
+const addListenersToAlert = (child) => {
   child.addEventListener(child.dataset.eventType, handleAlert);
 }
 
-const addListinersToCounters = (child) => {
+const addListenersToCounters = (child) => {
   child.addEventListener(child.dataset.eventType, handleCounters);
 }
 
-const addListinersToChange2n3 = (child) => {
+const addListenersToChange2n3 = (child) => {
   child.addEventListener(child.dataset.eventType, handleChangeColourOf2n3);
 }
 
-const addListinersToInvertBackground = (child) => {
+const addListenersToInvertBackground = (child) => {
   child.addEventListener(child.dataset.eventType, handleInvertBackground);
 }
 
-const addListinersToChangeSize = (child) => {
+const addListenersToChangeSize = (child) => {
   child.addEventListener(child.dataset.eventType, handleSizeChange);
 }
 
-const addListinersVisibility = (child) => {
+const addListenersVisibility = (child) => {
   const thing = document.getElementById('button'); //Fix it, find through child
   thing.addEventListener(child.dataset.eventType, handleTextVisibility);
 }
 
-const addListinersToModal = (child) => {
+const addListenersToModal = (child) => {
   child.addEventListener(child.dataset.eventType, handleModal);
 }
 
-const addListinersToFontFamily = (child) => {
+const addListenersToFontFamily = (child) => {
   child.addEventListener(child.dataset.eventType, handleFontFamily);
 }
 
-const addListiners = (child) => {
+const addListeners = (child) => {
   switch (child.dataset.type){
     case 'background-change':
-      addListinersToBackgroundChnage(child);
+      addListenersToBackgroundChnage(child);
       break;
     case 'alert':
-      addListinersToAlert(child);
+      addListenersToAlert(child);
       break;
     case 'counter':
-      addListinersToCounters(child);
+      addListenersToCounters(child);
       break;
     case 'change-2n3':
-      addListinersToChange2n3(child);
+      addListenersToChange2n3(child);
       break;
     case 'invert':
-      addListinersToInvertBackground(child);
+      addListenersToInvertBackground(child);
       break;
     case 'size':
-      addListinersToChangeSize(child);
+      addListenersToChangeSize(child);
       break;
     case 'visibility':
-      addListinersVisibility(child);
+      addListenersVisibility(child);
       break;
     case 'modal':
-      addListinersToModal(child);
+      addListenersToModal(child);
       break;
     case 'font':
-      addListinersToFontFamily(child);
+      addListenersToFontFamily(child);
       break;
   }
 }
@@ -175,7 +175,7 @@ const addExtraArticle = () => {
   }
 };
 
-gridChildren.forEach(addListiners);
+gridChildren.forEach(addListeners);
 
 window.addEventListener('load', addExtraArticle);
 window.addEventListener('resize', addExtraArticle);
