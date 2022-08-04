@@ -6,7 +6,7 @@ body{
 }
 
 h3{
-    font-size: 5vw;
+    font-size: 2vw;
     font-weight: 400;
     padding: 2rem;
     width: fit-content;
@@ -108,7 +108,7 @@ button{
 }
 
     
-@media (min-width: 1200px){
+@media (min-width: 1000px){
     .container{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;    
     }

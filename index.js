@@ -156,19 +156,19 @@ const addListiners = (child) => {
 }
 
 const addExtraArticle = () => {
-  if (!document.getElementById("container").innerHTML.includes("youtube")) {
-    if (window.innerWidth > 1200) {
+  if (!document.getElementById("container").innerHTML.includes("https")) {
+    if (window.innerWidth > 1000) {
       const new11 = document.createElement("article");
       new11.setAttribute('id', 'btn11');
       new11.setAttribute('class', 'item');
       new11.classList.add('style');
-      new11.setAttribute('onclick', "window.open('https://www.youtube.com/watch?v=5I5V8VZ3OOA','mywindow')")
+      new11.setAttribute('onclick', "window.open('https://theuselessweb.com/','mywindow')")
       new11.innerHTML =
         "<h3>:)</h3>";
       document.getElementById("container").appendChild(new11);
     }
   } else {
-    if (window.innerWidth <= 1200) {
+    if (window.innerWidth <= 1000) {
       const die = document.getElementById("btn11");
       die.remove();
     }
