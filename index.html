@@ -4,41 +4,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/index.css" />
+    <link href="https://fonts.google.com/specimen/Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Uchen">
     <title>Document</title>
   </head>
   <body>
     <section class="container" id="container">
-      <article class="item">
-        <h3>hejo</h3>
+      <article class="item style" data-event-type="click" data-type="background-change">
+        <h3>1 hejo</h3>
       </article>
-      <article class="item">
-        <h3>hejo ydtdyd</h3>
+      <article class="item style" data-event-type="click" data-type="alert">
+        <h3>2 hejo ydtdyd</h3>
       </article>
-      <article class="item">
-        <h3>hejo</h3>
+      <article class="item style" data-type="counter" data-counter="0" data-event-type="mouseenter">
+        <h3>3 hejo</h3>
       </article>
-      <article class="item">
-        <h3>hejo</h3>
+      <article class="item style" data-type="counter" data-counter="0" data-event-type="mouseleave">
+        <h3>4 hejo</h3>
       </article>
-      <article class="item">
-        <h3>hejo</h3>
+      <article class="item style" data-event-type="click" data-type="change-2n3">
+        <h3>5 hejo</h3>
       </article>
-      <article class="item">
-        <h3>hejo</h3>
+      <article class="item style" data-event-type="dblclick" data-type="invert">
+        <h3>6 hejo</h3>
       </article>
-      <article class="item">
-        <h3>hejo</h3>
+      <article class="item style" data-event-type="mouseover" data-type="size">
+        <h3>7 hejo</h3>
       </article>
-      <article class="item">
-          <h3>hejo</h3>
-          <button class="item click">click me</button>
+      <article class="item style" data-event-type="click" data-type="visibility">
+          <h3 id="text">8 hejo</h3>
+          <button class="style click" id="button">click me</button>
       </article>
-      <article class="item">
-        <h3>hejo</h3>
+      <article class="item style"  data-event-type="click" data-type="modal">
+        <h3>9 hejo</h3>
       </article>
-      <article class="item">
-        <h3>hejo</h3>
+      <article class="item style" data-event-type="click" data-type="font">
+        <h3>10 hejo</h3>
       </article>
+    </section>
+    <section id="myModal" class="modal">
+      <div class="modal-content">
+          <p>He he he, zasłaniam ci ekran :p</p>
+      </div>
     </section>
     <script src="/index.js"></script>
   </body>

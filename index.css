@@ -2,6 +2,7 @@ body{
     background-color: #F1DFDF;
     position: relative;
     color: #454545;
+    font-family: 'Lato', sans-serif;
 }
 
 h3{
@@ -22,7 +23,7 @@ h3{
     grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
-.item{
+.style{
     background: #F1DFDF;
     box-shadow: -5px 5px 10px rgba(217, 201, 201, 0.2), 5px -5px 10px rgba(217, 201, 201, 0.2), -5px -5px 10px rgba(255, 245, 245, 0.9), 5px 5px 13px rgba(217, 201, 201, 0.9), inset 1px 1px 2px rgba(255, 245, 245, 0.3), inset -1px -1px 2px rgba(217, 201, 201, 0.5);
     border-radius: 30.6849px;
@@ -58,7 +59,7 @@ h3{
     grid-column-end: 3;
 }
 
-.item:hover{
+.style:hover{
     border-style: solid;
     border-color: white;
 }
@@ -70,10 +71,45 @@ button{
     display: flex;
     justify-self: center;
 }
+
+.invert {
+    filter: invert(1);
+}
+
+.changeSize{
+    transform: scale(1.5);
+}
+
+.visibility{
+    filter: opacity(25%);
+}
+
+.modal {
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+  }
+
+  .font{
+    font-family: 'Uchen', serif;
+}
+
     
-@media (min-width: 1000px){
+@media (min-width: 1200px){
     .container{
-        display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;    
     }
 
