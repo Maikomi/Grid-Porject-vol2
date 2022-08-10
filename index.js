@@ -1,132 +1,139 @@
-const gridChildren = [...document.getElementsByClassName('item')]
+const gridChildren = [...document.getElementsByClassName('item')];
 
-gridChildren.forEach((child, idx) => {child.id = `btn${++idx}`;});
+gridChildren.forEach((child, idx) => (child.id = `btn${++idx}`));
 
-const randomBackgroundRGBA = () => {
-  const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
-  const red = randomBetween(0, 255);
-  const green = randomBetween(0, 255);
-  const blue = randomBetween(0, 255);
-  return {red, green, blue};
-}
+const getRandomHsl = () => {
+  const color = Math.random() * 361;
+  const saturation = Math.floor(Math.random() * 101);
+  const brightness = Math.floor(Math.random() * 101);
+  return {color, saturation, brightness}
+};
 
-const checkChangeFont = (red, green, blue) =>{
-  const constant = Math.sqrt(0.299 * (red * red) + 0.587 * (green * green) + 0.114 * (blue * blue));
-  if (constant < 127.5 || red < 40 || green < 40 || blue < 40) {
-    document.body.classList.add("whiteFont");
-  }else{
-    document.body.classList.remove("whiteFont");
+const changeFontColor = (brightness) => {
+  if(brightness < 50){
+    document.body.classList.add('white-font');
+    document.getElementById('button-text').classList.add('white-font')
+  } else {
+    document.body.classList.remove('white-font');
+    document.getElementById('button-text').classList.remove('white-font');
   }
+};
+
+const convertRandomHslToString = (hsl) => {
+  const color = hsl.color; 
+  const saturation = hsl.saturation;
+  const brightness = hsl.brightness;
+  const hslString =  `hsl(${color}, ${saturation}%, ${brightness}%)`;
+  return hslString;
 }
 
-const handleBackgroundChange = e => {
-  const rgba = randomBackgroundRGBA();
-  const red = rgba.red;
-  const green = rgba.green;
-  const blue = rgba.blue;
-  const rgbaString = `rgba(${red},${green},${blue},1)`
-  document.body.style.backgroundColor = rgbaString;
-  checkChangeFont(red, green, blue);
-  const styleItems = [...document.getElementsByClassName("style")];
-  styleItems.forEach((item) => {
-    item.style.backgroundColor = rgbaString;
-    const rm24 = red - 24;
-    const gbm21 = green - 21;
-    const r14 = red + 14;
-    const gb23 = red + 23;
-    item.style.boxShadow = `-5px 5px 10px rgba(${rm24}, ${gbm21}, ${gbm21}, 0.2), 5px -5px 10px rgba(${rm24}, ${gbm21}, ${gbm21}, 0.2), -5px -5px 10px rgba(${r14}, ${gb23}, ${gb23}, 0.9), 5px 5px 13px rgba(${rm24}, ${gbm21}, ${gbm21}, 0.9), inset 1px 1px 2px rgba(${r14}, ${gb23}, ${gb23}, 0.3), inset -1px -1px 2px rgba(${rm24}, ${gbm21}, ${gbm21}, 0.5)`;
+const setBodyBackgroundColor = hsl => {
+  const newBackgroundColor = convertRandomHslToString(hsl);
+  document.body.style.backgroundColor = newBackgroundColor;
+};
+
+const handleBackgroundChange = () => {
+  const hsl = getRandomHsl();
+  setBodyBackgroundColor(hsl);
+  const brightness = hsl.brightness;
+  const hslString = convertRandomHslToString(hsl);
+  document.body.style.backgroundColor = hslString;
+  changeFontColor(brightness);
+  const styledElements = [...document.getElementsByClassName('style')];
+  styledElements.forEach(element => {
+    element.style.backgroundColor = hslString;
   });
-}
+};
+const handleAlertAppearance = () => {
+  alert('Hej, to łaskocze. Hi hi hi');
+};
 
-const handleAlert = e => {
-  alert("Hej, to łaskocze. Hi hi hi");
-}
-
-const handleCounters = e => {
+const handleCounterChange = e => {
   const dataset = e.currentTarget.dataset;
-  e.currentTarget.querySelector('h3').textContent = `${dataset.eventType} counter: ${++dataset.counter}`;
-}
+  e.currentTarget.querySelector('h3').textContent = `${
+    dataset.eventType
+  } counter: ${++dataset.counter}`;
+};
 
-const handleChangeColourOf2n3 = e => {
-  const rgb = randomBackgroundRGBA();
-  const red = rgb.red;
-  const green = rgb.green;
-  const blue = rgb.blue;
-  const rgbString = `rgba(${red},${green},${blue})`
-  document.getElementById('btn2').style.backgroundColor = rgbString;
-  document.getElementById('btn3').style.backgroundColor = rgbString;
-}
+const handleColorChangeOf2n3 = () => {
+  const hsl = getRandomHsl();
+  const hslString = convertRandomHslToString(hsl);
+  document.getElementById('btn2').style.backgroundColor = hslString;
+  document.getElementById('btn3').style.backgroundColor = hslString;
+};
 
-const handleInvertBackground = e => {
+const handleBackgroundColorInversion = e => {
   const button = e.currentTarget;
-  button.classList.toggle("invert");
-}
+  button.classList.toggle('invert');
+};
 
-const handleSizeChange = e => {
-  const button = e.currentTarget;
-  button.classList.toggle("changeSize");
-}
+const handleSizeChangeOfElement = e => {
+  if (e.currentTarget === e.target) {
+    const button = e.currentTarget;
+    button.classList.toggle('changeSize');
+  }
+};
 
-const handleTextVisibility = e => {
-  const thing = document.getElementById('text'); //Fix it, find through child
-  thing.classList.toggle("visibility");
-}
+const handleTextVisibilityChange = () => {
+  const text = document.getElementById('text')
+  text.classList.toggle('visibility');
+};
 
-const handleModal = e => {
+const handleModalAppearance = e => {
   const modal = document.getElementById('myModal');
-  modal.style.display = "block";
-  window.addEventListener('click', (event) => {
+  modal.style.display = 'block';
+  window.addEventListener('click', event => {
     if (event.target == modal) {
-      modal.style.display = "none";
+      modal.style.display = 'none';
     }
   });
-}
+};
 
-const handleFontFamily = e => {
+const handleFontFamilyChange = e => {
   document.body.classList.toggle('font');
-}
+};
 
-const addListenersToBackgroundChnage = (child) => {
+const addBackgroundChangeListener = child => {
   child.addEventListener(child.dataset.eventType, handleBackgroundChange);
-}
+};
 
-const addListenersToAlert = (child) => {
-  child.addEventListener(child.dataset.eventType, handleAlert);
-}
+const addListenersToAlert = child => {
+  child.addEventListener(child.dataset.eventType, handleAlertAppearance);
+};
 
-const addListenersToCounters = (child) => {
-  child.addEventListener(child.dataset.eventType, handleCounters);
-}
+const addListenersToCounters = child => {
+  child.addEventListener(child.dataset.eventType, handleCounterChange);
+};
 
-const addListenersToChange2n3 = (child) => {
-  child.addEventListener(child.dataset.eventType, handleChangeColourOf2n3);
-}
+const addListenersToChange2n3 = child => {
+  child.addEventListener(child.dataset.eventType, handleColorChangeOf2n3);
+};
 
-const addListenersToInvertBackground = (child) => {
-  child.addEventListener(child.dataset.eventType, handleInvertBackground);
-}
+const addListenersToInvertBackground = child => {
+  child.addEventListener(child.dataset.eventType, handleBackgroundColorInversion);
+};
 
-const addListenersToChangeSize = (child) => {
-  child.addEventListener(child.dataset.eventType, handleSizeChange);
-}
+const addListenersToChangeSize = child => {
+  child.addEventListener(child.dataset.eventType, handleSizeChangeOfElement);
+};
 
-const addListenersVisibility = (child) => {
-  const thing = document.getElementById('button'); //Fix it, find through child
-  thing.addEventListener(child.dataset.eventType, handleTextVisibility);
-}
+const addListenersVisibility = child => {
+  const thing = document.getElementById('button'); 
+  thing.addEventListener(child.dataset.eventType, handleTextVisibilityChange);
+};
 
-const addListenersToModal = (child) => {
-  child.addEventListener(child.dataset.eventType, handleModal);
-}
+const addListenersToModal = child => {
+  child.addEventListener(child.dataset.eventType, handleModalAppearance);
+};
 
-const addListenersToFontFamily = (child) => {
-  child.addEventListener(child.dataset.eventType, handleFontFamily);
-}
+const addListenersToFontFamily = child => {
+  child.addEventListener(child.dataset.eventType, handleFontFamilyChange);
+};
 
-const addListeners = (child) => {
-  switch (child.dataset.type){
+const addListeners = child => {
+  switch (child.dataset.type) {
     case 'background-change':
-      addListenersToBackgroundChnage(child);
+      addBackgroundChangeListener(child);
       break;
     case 'alert':
       addListenersToAlert(child);
@@ -153,29 +160,35 @@ const addListeners = (child) => {
       addListenersToFontFamily(child);
       break;
   }
-}
+};
 
 const addExtraArticle = () => {
-  if (!document.getElementById("container").innerHTML.includes("https")) {
-    if (window.innerWidth > 1000) {
-      const new11 = document.createElement("article");
+  const array = [...document.getElementsByClassName('item')]
+  const mediaQuery = window.matchMedia('(min-width: 1000px)')
+  if (array.length == 10) {
+    if (mediaQuery.matches) 
+      {const new11 = document.createElement('article');
       new11.setAttribute('id', 'btn11');
       new11.setAttribute('class', 'item');
       new11.classList.add('style');
-      new11.setAttribute('onclick', "window.open('https://theuselessweb.com/','mywindow')")
-      new11.innerHTML =
-        "<h3>:)</h3>";
-      document.getElementById("container").appendChild(new11);
+      new11.setAttribute('onclick', "window.open('https://theuselessweb.com/','mywindow')");
+      new11.innerHTML = '<h3>:)</h3>';
+      document.getElementById('container').appendChild(new11);
     }
-  } else {
-    if (window.innerWidth <= 1000) {
-      const die = document.getElementById("btn11");
-      die.remove();
+  }else{
+    if(!mediaQuery.matches){
+      const wantedDeadNotAlive = document.getElementById('btn11');
+      wantedDeadNotAlive.remove();
     }
   }
-};
+}
 
 gridChildren.forEach(addListeners);
 
 window.addEventListener('load', addExtraArticle);
 window.addEventListener('resize', addExtraArticle);
+
+
+
+window.addEventListener('resize', checkSizeAlert);
+
