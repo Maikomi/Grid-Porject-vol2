@@ -118,8 +118,8 @@ const addListenersToChangeSize = child => {
 };
 
 const addListenersVisibility = child => {
-  const thing = document.getElementById('button'); 
-  thing.addEventListener(child.dataset.eventType, handleTextVisibilityChange);
+  const button = document.getElementById('button'); 
+  button.addEventListener(child.dataset.eventType, handleTextVisibilityChange);
 };
 
 const addListenersToModal = child => {
